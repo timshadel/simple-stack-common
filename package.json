@@ -1,0 +1,21 @@
+{
+  "name": "simple-stack-common",
+  "version": "0.0.0",
+  "description": "Common stack for a 'simple' application",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/flokk/simple-stack-common.git"
+  },
+  "author": "Cameron Bytheway <cameron@nujii.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "pack-n-stack": "0.0.2",
+    "connect-base": "0.0.1",
+    "express": "~3.0.6"
+  }
+}
