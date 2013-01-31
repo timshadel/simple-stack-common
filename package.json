@@ -14,7 +14,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "pack-n-stack": "~0.0.2",
+    "pack-n-stack": "~0.1.0",
     "connect-base": "~0.0.1",
     "express": "~3.0.6"
   }
