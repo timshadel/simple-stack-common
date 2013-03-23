@@ -1,6 +1,6 @@
 {
   "name": "simple-stack-common",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Common stack for a 'simple' application",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,8 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "pack-n-stack": "~0.1.0",
-    "connect-base": "~0.0.1",
-    "express": "~3.0.6"
+    "connect-base": "~0.1.0",
+    "express": "~3.1.0",
+    "debug": "~0.7.2"
   }
 }

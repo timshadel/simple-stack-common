@@ -3,8 +3,8 @@
  * Module dependencies.
  */
 var pns = require("pack-n-stack")
-  , join = require("path").join
   , express = require("express")
+  , connect = require("express/node_modules/connect")
   , base = require("connect-base");
 
 /**
@@ -13,42 +13,56 @@ var pns = require("pack-n-stack")
 module.exports = function(config) {
   if (!config) config = {};
 
-  // Create a pack
+  // Create an express/pack-n-stack app
   var pack = pns(express());
 
-  // Some default configuration
-  pack.configure(function() {
-    // Remove it for security
-    pack.set("x-powered-by", false);
-  });
+  /**
+   * Stack
+   */
+  pack
+    // Pre-router stack
+    .use("/favicon.ico", require("./lib/empty-favicon")())
+    .use(require("connect-base")())
+    .use(express.methodOverride())
+    .use(express.bodyParser())
+    .use(require("./lib/header-logger")())
+    // TODO Replace with express@3.1.1
+    // .use(express.compress())
+    .use("", "compress", express.compress())
 
-  // Base URL
-  pack.use(base());
+    // Router
+    .use(pack.router)
 
-  // Logger
-  pack.use(express.logger(config.logger || 'dev'));
-  // We don't want logs in our tests
-  pack.configure('test', function() {
-    pack.remove("logger");
-  });
+    // Post-router stack
+    .use(require("./lib/error-logger")());
 
-  // GZip
-  var compressFun = express.compress();
-  pack.use(function compress(req, res, next) {
-    compressFun(req, res, next);
-  });
+  /**
+   * Configuration
+   */
+  pack
+    .configure(function() {
+      // Remove it for security
+      pack.set("x-powered-by", false);
+    })
+    .configure("production", function() {
 
-  // Body Parser
-  pack.use(express.bodyParser());
+    })
+    .configure("development", function() {
+      pack.locals.pretty = true;
+      // Log our requests
+      pack.useAfter("base", express.logger('dev'));
+    });
 
-  // Method Override
-  pack.use(express.methodOverride());
-
-  // Return the pack
   return pack;
 };
 
-/*
- * Expose express
+/**
+ * Expose connect.middleware as stack.*
  */
-module.exports.middleware = express;
+exports.middleware = {};
+for (var key in connect.middleware) {
+  Object.defineProperty(
+      exports.middleware
+    , key
+    , Object.getOwnPropertyDescriptor(connect.middleware, key));
+}
