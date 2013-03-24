@@ -1,6 +1,6 @@
 {
   "name": "simple-stack-common",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Common stack for a 'simple' application",
   "main": "index.js",
   "scripts": {
