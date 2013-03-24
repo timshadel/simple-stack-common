@@ -4,13 +4,12 @@
  */
 var pns = require("pack-n-stack")
   , express = require("express")
-  , connect = require("express/node_modules/connect")
-  , base = require("connect-base");
+  , connect = require("express/node_modules/connect");
 
 /**
  * Expose the stack
  */
-module.exports = function(config) {
+module.exports = exports = function(config) {
   if (!config) config = {};
 
   // Create an express/pack-n-stack app
@@ -57,12 +56,14 @@ module.exports = function(config) {
 };
 
 /**
- * Expose connect.middleware as stack.*
+ * Expose connect.middleware as obj.*
  */
-exports.middleware = {};
-for (var key in connect.middleware) {
-  Object.defineProperty(
-      exports.middleware
-    , key
-    , Object.getOwnPropertyDescriptor(connect.middleware, key));
-}
+exports.middleware = function(obj) {
+  for (var key in connect.middleware) {
+    Object.defineProperty(
+        obj
+      , key
+      , Object.getOwnPropertyDescriptor(connect.middleware, key));
+  }
+};
+exports.middleware(exports.middleware);
