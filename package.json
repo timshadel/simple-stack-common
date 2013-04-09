@@ -16,7 +16,8 @@
   "dependencies": {
     "pack-n-stack": "~0.1.0",
     "connect-base": "~0.1.0",
-    "express": "~3.1.0",
-    "debug": "~0.7.2"
+    "express": "~3.1.1",
+    "debug": "~0.7.2",
+    "connect-metric": "~0.2.0"
   }
 }

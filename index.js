@@ -22,12 +22,11 @@ module.exports = exports = function(config) {
     // Pre-router stack
     .use("/favicon.ico", require("./lib/empty-favicon")())
     .use(require("connect-base")())
+    .use(require("connect-metric")(null, {request_id: config.request_id || "x-request-id"}))
     .use(express.methodOverride())
     .use(express.bodyParser())
     .use(require("./lib/header-logger")())
-    // TODO Replace with express@3.1.1
-    // .use(express.compress())
-    .use("", "compress", express.compress())
+    .use(express.compress())
 
     // Router
     .use(pack.router)
