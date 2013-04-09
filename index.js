@@ -20,9 +20,9 @@ module.exports = exports = function(config) {
    */
   pack
     // Pre-router stack
-    .use("/favicon.ico", require("./lib/empty-favicon")())
-    .use(require("connect-base")())
-    .use(require("connect-metric")(null, {request_id: config.request_id || "x-request-id"}))
+    .use("/favicon.ico", require("empty-favicon")())
+    .use(require("connect-base")(config.base))
+    .use(require("connect-metric")((config.metric||{}).context, (config.metric||{}).options))
     .use(express.methodOverride())
     .use(express.bodyParser())
     .use(require("./lib/header-logger")())
@@ -48,7 +48,7 @@ module.exports = exports = function(config) {
     .configure("development", function() {
       pack.locals.pretty = true;
       // Log our requests
-      pack.useAfter("base", express.logger('dev'));
+      pack.useBefore("base", express.logger('dev'));
     });
 
   return pack;
