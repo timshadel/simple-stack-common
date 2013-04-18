@@ -1,4 +1,4 @@
-simple-stack-common [![Build Status](https://travis-ci.org/flokk/simple-stack-common.png?branch=master)](https://travis-ci.org/flokk/simple-stack-common)
+simple-stack-common [![Build Status](https://travis-ci.org/flokk/simple-stack-common.png?branch=express2x)](https://travis-ci.org/flokk/simple-stack-common)
 ===================
 
 Common stack for 'simple' applications
