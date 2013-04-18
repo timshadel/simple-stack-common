@@ -13,7 +13,7 @@ module.exports = exports = function(config) {
   if (!config) config = {};
 
   // Create an express/pack-n-stack app
-  var pack = pns(express());
+  var pack = pns(express.createServer());
 
   /**
    * Stack
@@ -21,15 +21,16 @@ module.exports = exports = function(config) {
   pack
     // Pre-router stack
     .use("/favicon.ico", require("empty-favicon")())
+    .use(require("./lib/header")(config.deprecate)) // Forwards compatibility
     .use(require("connect-base")(config.base))
     .use(require("connect-metric")((config.metric||{}).context, (config.metric||{}).options))
     .use(express.methodOverride())
     .use(express.bodyParser())
     .use(require("./lib/header-logger")())
-    .use(express.compress())
+    .use("", "compress", express.compress())
 
     // Router
-    .use(pack.router)
+    .use("", "router", pack.router)
 
     // Post-router stack
     .use(require("./lib/error-logger")());

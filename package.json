@@ -1,6 +1,6 @@
 {
   "name": "simple-stack-common",
-  "version": "0.1.4",
+  "version": "0.1.4ex2",
   "description": "Common stack for a 'simple' application",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "dependencies": {
     "pack-n-stack": "~0.1.0",
     "connect-base": "~0.1.0",
-    "express": "~3.2.0",
+    "express": "~2.5.11",
     "debug": "~0.7.2",
     "connect-metric": "~0.2.0",
     "empty-favicon": "~0.1.0"
