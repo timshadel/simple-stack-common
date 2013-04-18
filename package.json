@@ -16,9 +16,14 @@
   "dependencies": {
     "pack-n-stack": "~0.1.0",
     "connect-base": "~0.1.0",
-    "express": "~3.1.1",
+    "express": "~3.2.0",
     "debug": "~0.7.2",
     "connect-metric": "~0.2.0",
     "empty-favicon": "~0.1.0"
+  },
+  "devDependencies": {
+    "should": "~1.2.2",
+    "mocha": "~1.9.0",
+    "supertest": "~0.6.0"
   }
 }
