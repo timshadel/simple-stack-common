@@ -4,7 +4,7 @@
  */
 var pns = require("pack-n-stack")
   , express = require("express")
-  , connect = require("express/node_modules/connect");
+  , connect = require("connect");
 
 /**
  * Expose the stack
