@@ -20,7 +20,8 @@
     "connect": "~2.7.6",
     "debug": "~0.7.2",
     "connect-metric": "~0.2.0",
-    "empty-favicon": "~0.1.0"
+    "empty-favicon": "~0.1.0",
+    "metric-log": "~0.2.2"
   },
   "devDependencies": {
     "should": "~1.2.2",

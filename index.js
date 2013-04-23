@@ -25,7 +25,7 @@ module.exports = exports = function(config) {
     .use(require("connect-metric")((config.metric||{}).context, (config.metric||{}).options))
     .use(express.methodOverride())
     .use(express.bodyParser())
-    .use(require("./lib/header-logger")())
+    .use(require("./lib/request-logger")())
     .use(express.compress())
 
     // Router
