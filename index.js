@@ -3,14 +3,18 @@
  * Module dependencies.
  */
 var pns = require("pack-n-stack")
-  , express = require("express")
-  , connect = require("connect");
+  , express
+  , connect;
 
 /**
  * Expose the stack
  */
 module.exports = exports = function(config) {
   if (!config) config = {};
+
+  express = config.express || require("express");
+  connect = config.connect || require("connect");
+  exports.middleware(exports.middleware);
 
   // Create an express/pack-n-stack app
   var pack = pns(express());
@@ -65,4 +69,3 @@ exports.middleware = function(obj) {
       , Object.getOwnPropertyDescriptor(connect.middleware, key));
   }
 };
-exports.middleware(exports.middleware);
